@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button>
+        <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title>Product Detail</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-img [src]="loadedProduct.ImageURL"></ion-img>
+    <ion-card-header>
+      <ion-card-title>{{loadedProduct.merek}} {{loadedProduct.model}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div>{{loadedProduct.price | currency: 'Rp. ' : true: '2.0'}}</div>
+      <div>Stock : {{loadedProduct.stock}}</div>
+      <br>
+      <h2><b>Product Detail</b></h2>
+      <div>Brand : {{loadedProduct.merek}}</div>
+      <div>Model : {{loadedProduct.model}}</div>
+      <div *ngIf="loadedProduct.type == 'CPU'">Base Clock        : {{loadedProduct.baseClock}} GHz</div>
+      <div *ngIf="loadedProduct.type == 'CPU'">Boost Clock       : {{loadedProduct.boostClock}} GHz</div>  
+      <div *ngIf="loadedProduct.type == 'CPU'">Number of Cores   : {{loadedProduct.core}}</div>
+      <div *ngIf="loadedProduct.type == 'CPU'">Number of Threads : {{loadedProduct.thread}}</div>
+
+      <div *ngIf="loadedProduct.type == 'RAM'">Speed : {{loadedProduct.speed}} MHz</div>
+      <div *ngIf="loadedProduct.type == 'RAM'">Size  : {{loadedProduct.size}} GB</div>
+      
+      <div *ngIf="loadedProduct.type == 'Motherboard'">Chipset             : {{loadedProduct.chipset}}</div>
+      <div *ngIf="loadedProduct.type == 'Motherboard'">Supported Processor : {{loadedProduct.support}}</div>
+    
+    </ion-card-content>
+  </ion-card>
+</ion-content>

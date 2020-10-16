@@ -1,20 +1,59 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button menu="Menu"></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end" (click)="toggleBtn()">
+      <ion-button>
+        <ion-icon name="grid" slot="end" [name]="Toggle ? 'grid' : 'list'"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Home</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content *ngIf="Toggle">
+  <div *ngFor="let product of products">
+  <ion-card  *ngIf="product.stock > 0" [routerLink]="['./',product.id]">
+    <ion-card-content>
+      <ion-list>
+        <ion-item lines="none">
+          <ion-thumbnail slot="start">
+            <ion-img [src]="product.ImageURL"></ion-img>
+          </ion-thumbnail>
+          <ion-grid>
+            <ion-row>
+              <ion-label>{{product.merek}} {{product.model}}</ion-label>
+            </ion-row>
+            <ion-row>
+              <ion-label>{{product.price | currency: 'Rp. ' : true: '2.0'}}</ion-label>
+            </ion-row>
+            <ion-row>
+              <ion-label>Stock : {{product.stock}}</ion-label>
+            </ion-row>
+          </ion-grid>
+        </ion-item> 
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</div>
+</ion-content>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+<ion-content *ngIf="!Toggle" class="ion-padding-top">
+  <ion-grid>
+    <ion-row class="ion-justify-content-around">
+      <ng-container *ngFor="let product of products">
+        <ion-col size="5" ion-item lines="none" *ngIf="product.stock != 0" [routerLink]="['./',product.id]" style="box-shadow: 0 0 2px 2px #828282; border-radius: 8px; margin-bottom: 20px;">
+            <ion-thumbnail class="ion-align-self-center" style="margin: auto; width: 100px; height: 100px;">
+              <ion-img [src]="product.ImageURL"></ion-img>
+            </ion-thumbnail>
+            <div style="padding-top: 10px; padding-right: 10px; padding-left: 10px;">
+              <ion-label>{{product.merek}} {{product.model}}</ion-label><br>
+              <ion-label>{{product.price | currency: 'Rp. ' : true: '2.0'}}</ion-label><br>
+              <ion-label>Stock : {{product.stock}}</ion-label><br>
+            </div>
+        </ion-col>
+      </ng-container>
+    </ion-row>
+  </ion-grid>
 </ion-content>

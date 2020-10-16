@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button menu="Menu"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Admin</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button [routerLink]="['./', 'add']" color="secondary">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-card *ngFor="let product of products" [routerLink]="['./edit',product.id]">
+    <ion-card-content>
+      <ion-list>
+        <ion-item-sliding>
+          <ion-item-options side="start" (ionSwipe)="presentAlert(product.id)"></ion-item-options>
+          <ion-item lines="none">
+            <ion-thumbnail slot="start">
+              <ion-img [src]="product.ImageURL"></ion-img>
+            </ion-thumbnail>
+            <ion-grid>
+              <ion-row>
+                <ion-label>{{product.merek}} {{product.model}}</ion-label>
+              </ion-row>
+              <ion-row>
+                <ion-label>{{product.price | currency: 'Rp. ' : true: '2.0'}}</ion-label>
+              </ion-row>
+              <ion-row>
+                <ion-label>Stock : {{product.stock}}</ion-label>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+          <ion-item-options side="end" (ionSwipe)="goEdit(product.id)"></ion-item-options> 
+        </ion-item-sliding>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
