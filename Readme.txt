@@ -1,4 +1,4 @@
-Link vercel: https://UTS-AaronEffendi-20915.vercel.app/home
+Link vercel: https://uts-aaroneffendi-20915.vercel.app/home
 Link github: https://github.com/AaronEffendi/UTS-AaronEffendi-CL-20915.git
 
 cara menjalankan dilocalhost:
